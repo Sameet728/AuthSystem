@@ -8,7 +8,7 @@ const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' });
 };
 // site state 
-app.post('/health', (req, res) => {
+router.post('/state', (req, res) => {
   res.json({ status: true });
 });
 
