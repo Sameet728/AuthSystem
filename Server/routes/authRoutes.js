@@ -28,9 +28,9 @@ router.post('/register', async (req, res) => {
             maxAge: 24*60 * 60 * 1000, // 1 hour
         });
 
-        res.status(201).json({ message: 'User registered successfully' });
+        res.status(201).json({ message: 'User registered successfully' ,status:true,user });
     } catch (error) {
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: 'Server error' ,status:false});
     }
 });
 
@@ -52,9 +52,9 @@ router.post('/login', async (req, res) => {
                 maxAge:24* 60 * 60 * 1000, // 1 hour
             });
 
-            res.status(200).json({ message: 'Login successful',user });
+            res.status(200).json({ message: 'Login successful',user,status:true });
         } else {
-            res.status(401).json({ message: 'Invalid credentials' });
+            res.status(401).json({ message: 'Invalid credentials', status:false });
         }
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
@@ -69,7 +69,7 @@ router.post('/logout', (req, res) => {
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'strict',
     });
-    res.status(200).json({ message: 'Logged out successfully' });
+    res.status(200).json({ message: 'Logged out successfully' , status:true});
 });
 
 module.exports = router;
